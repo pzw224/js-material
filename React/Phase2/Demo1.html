@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello React</title>
+  <script type="text/javascript" src='Javascripts/libs/react.js'></script>
+  <script type="text/javascript" src='Javascripts/libs/JSXTransformer.js'></script>
+</head>
+<body>
+	<div id="content"></div>
+
+  <script type="text/jsx">
+  var authorInfo =[
+      {author:'Ben',text:'this is first comment'},
+      {author:'Nicky',text:'this is another comment'}
+  ];
+  var content = document.getElementById('content');
+
+  var Comment = React.createClass({
+    render:function(){
+      var data = this.props.data;
+      return (
+            <div className='comment'>
+              <h2 className="commentAuthor">{data.author}</h2>
+              <span><p>{data.text}</p></span>
+            </div>
+        );
+    }
+  });
+  
+  var CoomentForm= React.createClass({
+    render:function(){
+      return (
+          <div>Comment Form</div> 
+        );
+    }
+  });
+
+  var CommentList = React.createClass({
+      render:function(){
+        var comments = this.props.data.map(function(comment){
+          return <Comment data={comment} />
+        });
+
+        return (
+          <div className="commentList">
+            {comments}
+          </div>
+        );
+      }
+    });
+
+  var CommentBox = React.createClass({
+    render:function(){
+       return (
+          <div className="commentBox"> 
+            <h1>Comments</h1>
+            <CommentList data={authorInfo} />
+            <CoomentForm />
+          </div>
+        );
+    }
+  });
+
+  React.render(
+    <CommentBox /> 
+    ,content);
+  </script>
+
+</body>
+</html>
+

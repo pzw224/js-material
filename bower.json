@@ -1,0 +1,16 @@
+{
+  "name": "js-material",
+  "version": "0.0.0",
+  "homepage": "https://github.com/bcguan2008/js-material",
+  "authors": [
+    "ben <bcguan2008@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
