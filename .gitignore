@@ -3,7 +3,6 @@ node_modules
 bower_components
 
 
-
-
-React\node_modules
-React\npm-debug.log
+React\**\node_modules
+React\**\npm-debug.log
+Mongodb\node_modules
