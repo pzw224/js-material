@@ -1,6 +1,5 @@
-/** @jsx React.DOM */
 
-var React = require('react/addons');
+var React = require('react/addons'),
     CommentList = require('./CommentList'),
     CommentForm = require('./CommentForm');
     

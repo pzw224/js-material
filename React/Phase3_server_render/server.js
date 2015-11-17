@@ -4,7 +4,8 @@ var express = require('express'),
 	port = 9013;
 
 // Make sure to include the JSX transpiler
-require("node-jsx").install();
+//require("node-jsx").install();
+require('babel/register');
 
 // Include static assets. Not advised for production
 app.use(express.static(path.join(__dirname, 'public')));

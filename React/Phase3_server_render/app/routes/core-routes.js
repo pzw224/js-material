@@ -1,5 +1,6 @@
-var React = require('react/addons'),
-	CommentBox = React.createFactory(require('../components/CommentBox'));
+var React = require('react'),
+	ReactDom = require('react-dom/server'),
+	 CommentBox = React.createFactory(require('../components/CommentBox'));
 
 module.exports = function(app) {
 
@@ -9,16 +10,9 @@ module.exports = function(app) {
 				{'author':'ben','text':'ben answer'},
 				{'author':'celine','text':'celine comments'}
 			]
-
 		}));
 		
 	    res.render('index.ejs', {reactOutput: reactHtml});
 	    
 	});
-
-	app.get('/data',function(req,res){
-		
-
-	});
-
 };

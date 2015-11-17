@@ -9,10 +9,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel": "^5.8.23",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "mongoose": "^4.1.11",
     "node-jsx": "^0.13.3",
-    "react": "^0.13.3"
+    "react": "^0.13.3",
+    "react-dom": "^0.14.0"
   }
 }
