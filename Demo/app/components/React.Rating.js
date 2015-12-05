@@ -1,0 +1,1 @@
+React.Rating.js

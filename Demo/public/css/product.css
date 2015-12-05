@@ -1,0 +1,75 @@
+#image  img{
+		width:394px;
+}
+#content{
+	width:1380px;
+}
+
+#right{
+	    border: 1px solid #CACACA;
+    background: #f2f3f6;
+    margin: 0 0 20px;
+    padding: 4px;
+    min-width: 300px;
+    min-height: 300px;
+}
+
+#content, #left, #right{
+	position: relative;
+	overflow: hidden;
+}
+
+#left{
+	width:980px;
+	float:left;
+}
+#image{
+	width:380px;
+	float: left
+}
+#content #description{
+	float:right;
+	width:500px;
+	padding-top: 20px;
+	padding-left:20px;
+}
+
+
+#right{
+	width:300px;
+	float:right;
+	text-align:center;
+	vertical-align: middle;
+}
+
+h1{
+	font-size:16px;
+}
+
+.rating.rating-5{
+	background-position:0 -180px;
+}
+.rating.rating-4{
+	background-position:0 -195px;
+}
+.rating.rating-3{
+	background-position:0 -210px;
+}
+.rating.rating-2{
+	background-position:0 -225px;
+}
+.rating.rating-1{
+	background-position:0 -240px;
+}
+.rating{
+    display: inline-block;
+    vertical-align: middle;
+    width: 59px;
+    height: 13px;
+    overflow: hidden;
+    background: url(http://images10.newegg.com/WebResource/Themes/2005/Nest/spr_base.png) no-repeat;
+}
+
+#right .loader{
+	margin-top:125px;
+}
