@@ -20147,11 +20147,12 @@
 	var React = __webpack_require__(/*! react */ 1);
 	
 	var ProductLeft = React.createFactory(__webpack_require__(/*! ./Left */ 160)),
-	    ProductRight = React.createFactory(__webpack_require__(/*! ./Right */ 163));
+	    ProductRight = React.createFactory(__webpack_require__(/*! ./Right */ 165));
 	
 	var Content = React.createClass({
 	  componentDidMount: function () {
-	    console.log("componentDidMount");
+	    console.log("Content_componentDidMount");
+	    console.log(this.state);
 	  },
 	
 	  render: function () {
@@ -20234,8 +20235,8 @@
 	'use strict';
 	
 	var React = __webpack_require__(/*! react */ 1);
-	var BulletDescription = React.createFactory(__webpack_require__(/*! ./BulletDescription */ 164)),
-	    Rating = React.createFactory(__webpack_require__(/*! ./Rating */ 165));
+	var BulletDescription = React.createFactory(__webpack_require__(/*! ./BulletDescription */ 163)),
+	    Rating = React.createFactory(__webpack_require__(/*! ./Rating */ 164));
 	
 	var ProductDescription = React.createClass({
 	  handleClick: function () {
@@ -20271,35 +20272,6 @@
 
 /***/ },
 /* 163 */
-/*!*****************************************!*\
-  !*** ./app/components/Product/Right.js ***!
-  \*****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var React = __webpack_require__(/*! react */ 1);
-	
-	var ProductRight = React.createClass({
-	  render: function () {
-	
-	    return React.createElement(
-	      "div",
-	      { id: "right" },
-	      React.createElement(
-	        "div",
-	        { className: "loader" },
-	        React.createElement("img", { alt: "ICON", src: "http://images10.newegg.com/WebResource/Themes/2005/Nest/loading16.gif" }),
-	        " Loading..."
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = ProductRight;
-
-/***/ },
-/* 164 */
 /*!*****************************************************!*\
   !*** ./app/components/Product/BulletDescription.js ***!
   \*****************************************************/
@@ -20310,38 +20282,38 @@
 	var React = __webpack_require__(/*! react */ 1);
 	
 	var BulletDescription = React.createClass({
-			render: function () {
+		render: function () {
 	
-					return React.createElement(
-							"div",
-							{ id: "bullet" },
-							React.createElement(
-									"ul",
-									null,
-									React.createElement(
-											"li",
-											null,
-											"3GB 384-Bit GDDR5"
-									),
-									React.createElement(
-											"li",
-											null,
-											"Core Clock 880 MHz"
-									),
-									React.createElement(
-											"li",
-											null,
-											"Boost Clock 1030 MHz"
-									)
-							)
-					);
-			}
+			return React.createElement(
+				"div",
+				{ id: "bullet" },
+				React.createElement(
+					"ul",
+					null,
+					React.createElement(
+						"li",
+						null,
+						"3GB 384-Bit GDDR5"
+					),
+					React.createElement(
+						"li",
+						null,
+						"Core Clock 880 MHz"
+					),
+					React.createElement(
+						"li",
+						null,
+						"Boost Clock 1030 MHz"
+					)
+				)
+			);
+		}
 	});
 	
 	module.exports = BulletDescription;
 
 /***/ },
-/* 165 */
+/* 164 */
 /*!******************************************!*\
   !*** ./app/components/Product/Rating.js ***!
   \******************************************/
@@ -20352,21 +20324,59 @@
 	var React = __webpack_require__(/*! react */ 1);
 	
 	var ProductRating = React.createClass({
-	  render: function () {
+	    render: function () {
 	
-	    var product = this.props.product;
+	        var product = this.props.product;
 	
-	    var className = "rating rating-" + product.rating;
-	    var ratingTitle = product.rating + " out of 5 eggs";
-	    return React.createElement(
-	      "div",
-	      { id: "rating" },
-	      React.createElement("i", { className: className, title: ratingTitle })
-	    );
-	  }
+	        var className = "rating rating-" + product.rating;
+	        var ratingTitle = product.rating + " out of 5 eggs";
+	        return React.createElement(
+	            "div",
+	            { id: "rating" },
+	            React.createElement("i", { className: className, title: ratingTitle })
+	        );
+	    }
 	});
 	
 	module.exports = ProductRating;
+
+/***/ },
+/* 165 */
+/*!*****************************************!*\
+  !*** ./app/components/Product/Right.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(/*! react */ 1);
+	
+	var ProductRight = React.createClass({
+	
+		componentDidMount: function () {
+			console.log("ProductRight_componentDidMount");
+			this.setState({ 'cell': 'loading' });
+		},
+		render: function () {
+			if (!this.state) {
+				return React.createElement(
+					"div",
+					{ id: "right" },
+					React.createElement(
+						"div",
+						{ className: "loader" },
+						React.createElement("img", { alt: "ICON", src: "http://images10.newegg.com/WebResource/Themes/2005/Nest/loading16.gif" }),
+						" Loading..."
+					)
+				);
+			} else {
+				console.log("i am state change");
+				return React.createElement("div", { id: "right" });
+			}
+		}
+	});
+	
+	module.exports = ProductRight;
 
 /***/ }
 /******/ ]);

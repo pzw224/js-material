@@ -5,8 +5,9 @@ var	ProductLeft = React.createFactory(require('./Left')),
 	  ProductRight = React.createFactory(require('./Right'));
 
 var Content = React.createClass({
-  componentDidMount: function() {
-    console.log("componentDidMount")
+  componentDidMount:function(){
+    console.log("Content_componentDidMount");
+    console.log(this.state);
   },
 
   render: function() {

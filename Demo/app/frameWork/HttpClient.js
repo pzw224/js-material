@@ -5,8 +5,7 @@ var nodeClient = new Client();
 var serviceUrl = 'http://172.16.22.119:6361/itemservice/specialprice'
 
 module.exports = {
-	post:function(args, callBack){
-
+	post:function(args, callBack,isDebugger){
 		var baseArgs = {
 			headers:{
 				"Content-Type": "application/json",

@@ -10,8 +10,8 @@ var ProductRating = React.createClass({
 	var ratingTitle = product.rating + " out of 5 eggs";
     return (
         <div id="rating">
-			<i className={className} title={ratingTitle}></i>
-		</div>
+			   <i className={className} title={ratingTitle}></i>
+		    </div>
       )
   }
 })
