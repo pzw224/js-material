@@ -1,7 +1,7 @@
 var React = require('react'),
 	ReactDOMServer = require('react-dom/server'),
 	ProductContent = React.createFactory(require('../components/Product/Content')),
-	restfulClient = require('../frameWork/HttpClient');
+	restfulClient = require('../frameWork/Server/HttpClient');
 
 var fakeData ={
 	productpage_realtime:[{
@@ -12,27 +12,26 @@ var fakeData ={
 	}]
 };
 
+var RequestModel = require("../DataModel/requestModel.js");
+
 module.exports = function(app) {
+	
+
+	app.get("/api",function(req,res){
+
+		var itemNumber = req.param("item");
+		var model = new RequestModel(itemNumber);
+
+		restfulClient.post(model,function(data,response){
+			res.json(data);
+		});
+	});
 
 	app.get('/product', function(req, res){
 
-		var postData ={
-				data:{
-			    "CompanyCode": 1003,
-			    "CountryCode": "USA",
-			    "Items": [
-			    {
-			        "ItemNumber": req.param("item")
-			    }],
-			    "NeedDetailInfo": true,
-			    "PriceTypes": [],
-			    "RegionCountrycode": null,
-			    "RegionCurrecycode": "USD",
-			    "RequestModel": "LandingPagePageProductDetail2015 ProductDetailServiceBL.GetItemInfoForLandingPage2011 for Group"
-			}
-		}
-
 		var isDebugger = req.param("debug");
+
+		var model = new RequestModel(req.param("item"));
 
 		var callBack = function(data,response){
 			if(data && data.productpage_realtime){
@@ -46,10 +45,11 @@ module.exports = function(app) {
 		};
 
 		if(!isDebugger){
-			restfulClient.post(postData,callBack);
+			restfulClient.post(model,callBack);
 		}
-
-		callBack(fakeData,res);
+		else{
+			callBack(fakeData,res);
+		}
 	    
 	});
 };

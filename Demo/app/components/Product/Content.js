@@ -6,15 +6,10 @@ var	ProductLeft = React.createFactory(require('./Left')),
 
 var Content = React.createClass({
   componentDidMount:function(){
-    console.log("Content_componentDidMount");
-    console.log(this.state);
   },
-
   render: function() {
 
     var product = this.props;
-    console.log(this.props);
-
     return (
       <div id="content" >
       	<ProductLeft product={product} />

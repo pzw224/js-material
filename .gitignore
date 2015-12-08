@@ -6,3 +6,4 @@ bower_components
 React\**\node_modules
 React\**\npm-debug.log
 Mongodb\node_modules
+Demo\node_modules

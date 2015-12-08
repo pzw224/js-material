@@ -1,15 +1,25 @@
 'use strict';
-var React = require("react");
+var React = require("react"),
+	ProductPrice = require("./Price");
 
 var ProductRight = React.createClass({
 
 	componentDidMount:function(){
-		console.log("ProductRight_componentDidMount");
-		this.setState({'cell':'loading'});
+		
+		var url = "http://localhost:9013/api?item="+this.props.product.itemNumber;
+		$.ajax({
+			url:url,
+			context:document.body
+		}).done(function(data){
 
+			if(data && data.productpage_realtime && data.productpage_realtime[0]){
+				this.setState({'loadingProduct': data.productpage_realtime[0]});
+			}
+			
+		}.bind(this));
 	},
 	render: function() {
-		if(!this.state){
+		if(!(this.state && this.state.loadingProduct)){
 			return (
 			  <div id="right">
 					<div className="loader"> 
@@ -19,8 +29,12 @@ var ProductRight = React.createClass({
 			  )
 		}
 		else{
-			console.log("i am state change")
-			return (<div id="right" />);
+			
+			return (
+				<div id="right">
+					<ProductPrice priceInfo={this.state.loadingProduct}/>
+				</div>
+				);
 		}
 	}
 })

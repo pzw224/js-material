@@ -20150,16 +20150,10 @@
 	    ProductRight = React.createFactory(__webpack_require__(/*! ./Right */ 165));
 	
 	var Content = React.createClass({
-	  componentDidMount: function () {
-	    console.log("Content_componentDidMount");
-	    console.log(this.state);
-	  },
-	
+	  componentDidMount: function () {},
 	  render: function () {
 	
 	    var product = this.props;
-	    console.log(this.props);
-	
 	    return React.createElement(
 	      'div',
 	      { id: 'content' },
@@ -20282,32 +20276,32 @@
 	var React = __webpack_require__(/*! react */ 1);
 	
 	var BulletDescription = React.createClass({
-		render: function () {
+			render: function () {
 	
-			return React.createElement(
-				"div",
-				{ id: "bullet" },
-				React.createElement(
-					"ul",
-					null,
-					React.createElement(
-						"li",
-						null,
-						"3GB 384-Bit GDDR5"
-					),
-					React.createElement(
-						"li",
-						null,
-						"Core Clock 880 MHz"
-					),
-					React.createElement(
-						"li",
-						null,
-						"Boost Clock 1030 MHz"
-					)
-				)
-			);
-		}
+					return React.createElement(
+							"div",
+							{ id: "bullet" },
+							React.createElement(
+									"ul",
+									null,
+									React.createElement(
+											"li",
+											null,
+											"3GB 384-Bit GDDR5"
+									),
+									React.createElement(
+											"li",
+											null,
+											"Core Clock 880 MHz"
+									),
+									React.createElement(
+											"li",
+											null,
+											"Boost Clock 1030 MHz"
+									)
+							)
+					);
+			}
 	});
 	
 	module.exports = BulletDescription;
@@ -20324,18 +20318,18 @@
 	var React = __webpack_require__(/*! react */ 1);
 	
 	var ProductRating = React.createClass({
-	    render: function () {
+	  render: function () {
 	
-	        var product = this.props.product;
+	    var product = this.props.product;
 	
-	        var className = "rating rating-" + product.rating;
-	        var ratingTitle = product.rating + " out of 5 eggs";
-	        return React.createElement(
-	            "div",
-	            { id: "rating" },
-	            React.createElement("i", { className: className, title: ratingTitle })
-	        );
-	    }
+	    var className = "rating rating-" + product.rating;
+	    var ratingTitle = product.rating + " out of 5 eggs";
+	    return React.createElement(
+	      "div",
+	      { id: "rating" },
+	      React.createElement("i", { className: className, title: ratingTitle })
+	    );
+	  }
 	});
 	
 	module.exports = ProductRating;
@@ -20349,16 +20343,26 @@
 
 	'use strict';
 	
-	var React = __webpack_require__(/*! react */ 1);
+	var React = __webpack_require__(/*! react */ 1),
+	    ProductPrice = __webpack_require__(/*! ./Price */ 166);
 	
 	var ProductRight = React.createClass({
 	
 		componentDidMount: function () {
-			console.log("ProductRight_componentDidMount");
-			this.setState({ 'cell': 'loading' });
+	
+			var url = "http://localhost:9013/api?item=" + this.props.product.itemNumber;
+			$.ajax({
+				url: url,
+				context: document.body
+			}).done((function (data) {
+	
+				if (data && data.productpage_realtime && data.productpage_realtime[0]) {
+					this.setState({ 'loadingProduct': data.productpage_realtime[0] });
+				}
+			}).bind(this));
 		},
 		render: function () {
-			if (!this.state) {
+			if (!(this.state && this.state.loadingProduct)) {
 				return React.createElement(
 					"div",
 					{ id: "right" },
@@ -20370,13 +20374,52 @@
 					)
 				);
 			} else {
-				console.log("i am state change");
-				return React.createElement("div", { id: "right" });
+	
+				return React.createElement(
+					"div",
+					{ id: "right" },
+					React.createElement(ProductPrice, { priceInfo: this.state.loadingProduct })
+				);
 			}
 		}
 	});
 	
 	module.exports = ProductRight;
+
+/***/ },
+/* 166 */
+/*!*****************************************!*\
+  !*** ./app/components/Product/Price.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(/*! react */ 1);
+	
+	var ProductPrice = React.createClass({
+		render: function () {
+			var priceInfo = this.props.priceInfo;
+			return React.createElement(
+				"div",
+				null,
+				React.createElement(
+					"li",
+					null,
+					"price:",
+					priceInfo.unitPrice
+				),
+				React.createElement(
+					"li",
+					null,
+					"qty:",
+					priceInfo.qty
+				)
+			);
+		}
+	});
+	
+	module.exports = ProductPrice;
 
 /***/ }
 /******/ ]);
