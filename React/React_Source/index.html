@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>React Source code</title>
+</head>
+<body>
+	<div id="container"></div>
+	
+	<script type="text/javascript" src='JS/React.js'></script>
+	<script type="text/javascript" src='JS/jQuery.js'></script>
+	
+	<script type="text/javascript">
+	var HelloMessage = React.createClass({
+	  getInitialState: function() {
+	    return {type: 'say:'};
+	  },
+	  componentWillMount: function() {
+	    console.log('我就要开始渲染了。。。')
+	  },
+	  componentDidMount: function() {
+	    console.log('我已经渲染好了。。。')
+	  },
+	  render: function() {
+	    return React.createElement("div", null,this.state.type, "Hello ", this.props.name);
+	  }
+	});
+
+	
+
+	React.render(React.createElement(HelloMessage, {name: "Ben"}),document.getElementById("container"))
+	</script>
+</body>
+</html>

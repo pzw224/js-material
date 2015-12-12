@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="container"></div>
+
+	<script type="text/javascript" src='JS/React/react.js'></script>
+	<script type="text/javascript" src='JS/React/JSXTransformer.js'></script>
+	
+	<script type="text/jsx">
+	var Parent = React.createClass({  
+	  getInitialState: function() {
+	     return {
+	       text: 'default'
+	     };
+	  },
+
+	  handleChildClick: function(){
+	  	console.log('parent handleClick');
+	    this.setState({
+	      text: Math.random() * 1000
+	    });
+	  },
+
+	  render: function(){
+	    console.log('parent render');
+
+	    return (
+	      <div className="parent">
+	       this is parent!
+	       <Child text={this.state.text} onClick={this.handleChildClick} />
+	      </div>
+	    );
+	  }
+	});
+
+
+	var Child = React.createClass({  
+	  getInitialState: function() {
+	    return {
+	     text: this.props.text + '~'
+	    };
+	  },
+
+	  componentWillReceiveProps: function(nextProps) {
+	    this.setState({
+	      text: nextProps.text + '~'
+	    });
+	  },
+
+	  handleClick: function(){
+	  	console.log('child handleClick');
+	    this.setState({
+	      text: 'clicked'
+	    });
+
+	    this.props.onClick();
+	  },
+
+	  render: function() {
+
+	    console.log('child render');
+
+	    return (
+	     <div className="child">
+	       I m child
+	       <p>something from parent:</p>
+	       <p>{this.state.text}</p>
+	       <button onClick={this.handleClick}>click me</button>
+	     </div>
+	    );
+	  }
+	});
+
+	React.render(<Parent/>, document.getElementById('container'));  
+	</script>
+
+
+	
+</body>
+</html>
